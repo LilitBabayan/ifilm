@@ -1,1 +1,5 @@
-import bootstrap from 'bootstrap/dist/js/bootstrap.js'
+/*
+* Bootstrap 5
+* https://getbootstrap.com/docs/5.0/getting-started/download/
+* */
+import boot from 'bootstrap'
