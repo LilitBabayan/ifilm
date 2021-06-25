@@ -1,38 +1,36 @@
 <template>
-    <div class="container">
+    <div class="container p-2 q">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand ms-3" href="#">
+                    <img src="../assets/ifilm.png" width="120" class="d-inline-block align-top" alt="">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <ul class="navbar-nav me-auto mb-lg-0">
+                        <li class="nav-item mt-3">
+                            <select class="border-0 p-0 shadow-none w-auto bg-body" id="select">
+                                <option value="en">EN</option>
+                                <option value="ru">RU</option>
+                            </select>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            <form class="flex-nowrap navbar navbar-light bg-transparent" id="myForm">
+                                <input class="mr-lg-2 mx-3 shadow-none bg-transparent form-control " placeholder="Search" id="input">
+                                <button class="btn p-1" type="submit">Search</button>
+                            </form>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <div class="d-flex justify-content-end">
+                        <a href="#" class="text-decoration-none mode nav-link">Random</a>
+                        <div class="form-check form-switch mt-2">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" >
+                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                        </div>
+                        <a href="#" class="text-decoration-none mode nav-link ">Night mode</a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -44,3 +42,50 @@
         name: "top-header"
     }
 </script>
+
+<style scoped>
+    .q {
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+    }
+
+    #select {
+        color: #495057;
+    }
+    #input {
+        border-radius: 50rem;
+        font-size: 15px;
+    }
+    #input:focus {
+        outline: none !important;
+        border-color: #fe7900;
+
+    }
+    button {
+        background-color: #fe7900;
+        color: white;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    button:hover {
+        color: white;
+    }
+
+    .mode {
+        color: rgba(0,0,0,.5);
+        font-size: 18px;
+    }
+    .mode:hover {
+        color: rgba(0,0,0,.7);
+    }
+
+    .form-check-input:checked {
+        background-color: #ed7812;
+        border-color: #ed7812;
+    }
+
+    </style>
