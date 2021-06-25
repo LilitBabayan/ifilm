@@ -1,25 +1,23 @@
 <template>
-  <div id="app">
-    <MainFooter />
-  </div>
+    <div id="app">
+        <topHeader></topHeader>
+        <carousel />
+        <router-view/>
+        <footerMain />
+    </div>
 </template>
 
 <script>
-import MainFooter from '@/components/MainFooter'
+    import topHeader from './components/top-header'
+    import carousel from './components/carousel'
+    import footerMain from './components/footer-main'
 
-  export default {
-    name: 'App',
-    components: {
-      MainFooter
+    export default {
+        name: 'App',
+        components: {
+            topHeader,
+            carousel,
+            footerMain
+        }
     }
-  }
 </script>
-
-<style lang="scss">
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-  }
-</style>
