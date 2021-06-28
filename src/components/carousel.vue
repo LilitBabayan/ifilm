@@ -73,12 +73,10 @@
 </script>
 
 <style lang="scss">
-    @import "../sass/main.scss";
+    @import "../sass/_variables.scss";
 
     .mainContainer{
         position:relative;
-        background-color: $bcg-Color;
-        box-shadow: inset 0 0 5px #000000;
         p{
             font-family: $Web-Font;
             font-size: 13px;
