@@ -58,7 +58,7 @@
             transition: transform .4s;
         }
         .movie-pic:hover{
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         @keyframes imageShadow {
             from{
