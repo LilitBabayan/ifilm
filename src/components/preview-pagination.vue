@@ -105,6 +105,7 @@
        }
        a{
            color: $main-color;
+           font-family: $Web-Font;
        }
        .page-link{
            border:none;
