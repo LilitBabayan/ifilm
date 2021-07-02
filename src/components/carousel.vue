@@ -1,16 +1,18 @@
 <template>
-    <div class="position-relative">
-        <Carousel id="movies-carousel"
-                  :perPage="8"
-                  :paginationEnabled="false"
-                  :navigationEnabled="true"
-                  :navigationNextLabel="nextLabel"
-                  :navigationPrevLabel="prevLabel">
-            <Slide v-for="item in items">
-                <img :src="item.img" class="img-fluid">
-                <p>{{item.name}}</p>
-            </Slide>
-        </Carousel>
+
+    <div class="mb-5">
+        <carousel class="mainContainer" :perPage="8"
+                  :perPageCustom="[[185, 2],[768,3], [1024, 8]]"
+                  :paginationEnabled = "false"
+                  :navigation-enabled="true"
+                  :navigation-next-label="nextLabel"
+                  :navigation-prev-label="prevLabel">
+            <slide v-for="(movie, key) in carouselMovies" :key="`slide-${key}`" class="p-3">
+                <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`" class="img-fluid movie-pic mb-2">
+                <p>{{movie.title}}</p>
+            </slide>
+        </carousel>
+
     </div>
 </template>
 
@@ -22,69 +24,69 @@
             Carousel,
             Slide
         },
-        data() {
-            return {
-                prevLabel: '<i class="prev-btn fas fa-chevron-left"></i>',
-                nextLabel: '<i class="next-btn fas fa-chevron-right"></i>',
-                items: [
-                    {
-                        img: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/rTh4K5uw9HypmpGslcKd4QfHl93.jpg',
-                        name: 'Cruella'
-                    },
-                    {
-                        img: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/rTh4K5uw9HypmpGslcKd4QfHl93.jpg',
-                        name: 'Cruella'
-                    },
-                    {
-                        img: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/rTh4K5uw9HypmpGslcKd4QfHl93.jpg',
-                        name: 'Cruella'
-                    },
-                    {
-                        img: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/rTh4K5uw9HypmpGslcKd4QfHl93.jpg',
-                        name: 'Cruella'
-                    },
-                    {
-                        img: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/rTh4K5uw9HypmpGslcKd4QfHl93.jpg',
-                        name: 'Cruella'
-                    },
-                    {
-                        img: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/rTh4K5uw9HypmpGslcKd4QfHl93.jpg',
-                        name: 'Cruella'
-                    },
-                    {
-                        img: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/rTh4K5uw9HypmpGslcKd4QfHl93.jpg',
-                        name: 'Cruella'
-                    },
-                    {
-                        img: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/rTh4K5uw9HypmpGslcKd4QfHl93.jpg',
-                        name: 'Cruella'
-                    },
-                    {
-                        img: 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/rTh4K5uw9HypmpGslcKd4QfHl93.jpg',
-                        name: 'Cruella'
-                    }
-                ]
+
+        data (){
+            return{
+                nextLabel: '<i class="fas fa-chevron-right"></i>',
+                prevLabel:'<i class="fas fa-chevron-left"></i>',
+            }
+        },
+        created(){
+            this.$store.dispatch("getCarouselMovies")
+        },
+        computed:{
+            carouselMovies(){
+                return this.$store.getters.getMovieCarousel
             }
         }
     }
 </script>
 
-<style lang="scss" scoped>
-    @import "../sass/_variables";
 
-    #movies-carousel {
-        /deep/ .VueCarousel-navigation-prev, /deep/.VueCarousel-navigation-next {
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            i {
-                color: $main-color;
-                font-size: 40px;
+<style lang="scss">
+    @import "../sass/_variables.scss";
+
+    .mainContainer{
+        position:relative;
+        p{
+            font-family: $Web-Font;
+            font-size: 13px;
+            color: $textColor;
+            text-align: center;
+        }
+        .movie-pic{
+            animation: imageShadow 2s infinite;
+            animation-direction: alternate-reverse;
+            transition: transform .4s;
+        }
+        .movie-pic:hover{
+            transform: scale(1.05);
+        }
+        @keyframes imageShadow {
+            from{
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0);
+            }
+            to{
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 1);
             }
         }
-        /deep/ .VueCarousel-navigation-next {
-            left: unset;
-            right: 0;
+        .VueCarousel-navigation{
+            i{
+                font-size: 50px;
+            }
+            .VueCarousel-navigation-next{
+                left: unset;
+                right: 0px;
+            }
+            .VueCarousel-navigation-next, .VueCarousel-navigation-prev{
+                padding: 0px;
+                top: 40%!important;
+                transform: translateY(-50%)!important;
+                color: $main-color;
+            }
+            .VueCarousel-navigation-next:focus, .VueCarousel-navigation-prev:focus{
+                outline: none;
+            }
         }
     }
 </style>
