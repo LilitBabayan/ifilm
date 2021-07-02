@@ -7,4 +7,20 @@ $Web-Font: 'Montserrat', sans-serif;
 $bcg-Color: #949594;
 $main-color: #fe7901;
 $textColor: black;
+$dark-m-tColor: white;
+
+body{
+  font-family: $Web-Font;
+}
+a{
+  color:black;
+  text-decoration: none;
+}
+a:hover{
+  color: black;
+}
+
+.widgetColor{
+  background-color: #f8f8f8;
+}
 

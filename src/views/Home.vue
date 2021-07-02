@@ -5,7 +5,6 @@
             <div class="col-12 col-md-8">
                 <previewPagination></previewPagination>
             </div>
-
             <div class="col-12 col-md-4">
                 <topMovies />
                 <toTheCinema/>
