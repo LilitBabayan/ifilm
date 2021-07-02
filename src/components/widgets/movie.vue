@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link to="/movie">
+        <router-link :to="`/movie/${movie.id}`">
             <div class="d-flex movieWidget widgetColor justify-content-between" >
                 <div class="w-25">
                     <img class="img-fluid" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`">

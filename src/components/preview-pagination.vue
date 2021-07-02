@@ -1,23 +1,9 @@
 <template>
-   <div>
-       <paginations></paginations>
-       <div class="row">
-           <div v-for="movie in movies" class="col-6 col-lg-4 ">
-
-               <div>
-                   <div class="position-relative">
-                       <div class="position-absolute text-white p-3 info-box">
-                           <h4>{{movie.title}}</h4>
-                           <ul>movies
-                               <li><span>Year:</span> {{movie.release_date}}</li>
-                               <li><span>Total votes:</span> {{movie.vote_count}}</li>
-                               <li><span>Popularity:</span> {{movie.vote_average}}</li>
-                           </ul>
-                       </div>
-                       <img class="img-fluid movieImage" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`">
-                   </div>
-
-               <router-link to="/movie">
+    <div>
+        <paginations></paginations>
+        <div class="row">
+            <div v-for="movie in movies" class="col-6 col-lg-4 ">
+                <router-link :to="`/movie/${movie.id}`">
                     <div class="movieLayer">
                         <div class="position-relative overflow-hidden">
                             <div class="position-absolute text-white info-box">
@@ -31,29 +17,29 @@
                                     <span class="rounded-circle averageCircle font-weight-bold border border-white d-inline-flex">{{movie.vote_average}}</span>
                                 </div>
                             </div>
-                            <img class="img-fluid movieImage" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`">
+                            <img class="img-fluid movieImage"
+                                 :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`">
                         </div>
 
                         <div class="mt-2">
                             <vueStar
                                     class="justify-content-center"
-                                    :rating="5"
+                                    :rating="movie.vote_average"
                                     :increment="movie.vote_average"
                                     :read-only="true"
                                     :show-rating="false"
                                     :star-size="starSize"
-                                    :active-color ="'#fe7900'"
+                                    :active-color="'#fe7900'"
                                     :max-rating="10">
                             </vueStar>
                         </div>
                         <h5 class="text-center titleConfigs mt-1">{{movie.title}}</h5>
                     </div>
-               </router-link>
-           </div>
-       </div>
-       <paginations></paginations>
-       </div>
-   </div>
+                </router-link>
+            </div>
+        </div>
+        <paginations></paginations>
+    </div>
 </template>
 
 <script>
@@ -63,9 +49,9 @@
     export default {
         name: "preview-pagination",
         data() {
-          return {
-              starSize: 20,
-          }
+            return {
+                starSize: 20,
+            }
         },
         components: {
             vueStar,
@@ -85,28 +71,31 @@
 <style lang="scss" scoped>
     @import "../sass/variables";
 
-    /deep/ .pagination{
-        .page-item.active{
-            .page-link{
+    /deep/ .pagination {
+        .page-item.active {
+            .page-link {
                 background-color: $main-color;
             }
         }
-        a{
+
+        a {
             color: $main-color;
         }
-        .page-link{
-            border:none;
+
+        .page-link {
+            border: none;
             box-shadow: none;
             background-color: transparent;
         }
-        .page-link:hover{
-            background-color:#e9ecef;
+
+        .page-link:hover {
+            background-color: #e9ecef;
         }
     }
 
-    .movieLayer{
+    .movieLayer {
         .info-box {
-            background-color: rgba(33,33,33,.82);
+            background-color: rgba(33, 33, 33, .82);
             top: 0;
             left: 0;
             width: 100%;
@@ -115,39 +104,44 @@
             transition: all .3s ease;
             opacity: 0;
             z-index: 1;
-            h4{
+
+            h4 {
                 font-size: 20px;
                 font-weight: normal;
             }
-            ul{
+
+            ul {
                 list-style: none;
                 padding-left: 0px;
             }
-            .averageCircle{
+
+            .averageCircle {
                 background-color: $main-color;
-                width:35px;
-                height:35px;
+                width: 35px;
+                height: 35px;
                 font-weight: bold;
                 font-family: $Web-Font;
                 align-items: center;
                 justify-content: center;
             }
         }
-        .movieImage{
+
+        .movieImage {
             transition: all .5s ease 0s;
         }
     }
 
-    .movieLayer:hover{
-        .info-box{
+    .movieLayer:hover {
+        .info-box {
             opacity: 1;
         }
-        .movieImage{
+
+        .movieImage {
             transform: scale(1.5);
         }
     }
 
-    .titleConfigs{
+    .titleConfigs {
         font-weight: bold;
         height: 60px;
         font-size: 16px;

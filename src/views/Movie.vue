@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8">
-                <moviePlayer />
+                <moviePlayer :movie="movie" />
             </div>
             <div class="col-12 col-md-4">
                 <topMovies />
@@ -20,9 +20,23 @@
             moviePlayer,
             topMovies
         },
+        watch: {
+            $route(to, from) {
+                this.getMovie(to.params.id)
+            }
+        },
+        computed: {
+            movie() {
+                return this.$store.getters.getMovie
+            }
+        },
+        methods: {
+            getMovie($id) {
+                this.$store.dispatch('getMovieById', $id)
+            }
+        },
+        created() {
+            this.getMovie(this.$route.params.id)
+        }
     }
 </script>
-
-<style scoped>
-
-</style>

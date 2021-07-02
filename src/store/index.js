@@ -17,10 +17,13 @@ export default new Vuex.Store({
             movies: []
         },
         similarMovies: [],
-
+        movie: {}
     },
 
     mutations: {
+        DESTROY_MOVIE(state) {
+            state.movie = {}
+        },
         SET_MOVIES(state, data) {
             state.moviesPagination = data.results
             state.totalPages = data.total_pages
@@ -42,6 +45,9 @@ export default new Vuex.Store({
             state.similarMovies = data.results
         },
 
+        SET_MOVIE(state, data) {
+            state.movie = data
+        }
     },
     actions: {
         getPaginationMovies({commit}, page) {
@@ -59,7 +65,6 @@ export default new Vuex.Store({
         getRecommendations({commit}, page) {
             axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/top_rated?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=${page || 1}`)
                 .then(function (response) {
-                    console.log(response)
                     commit('SET_RECOMMENDATIONS', response.data)
                 })
         },
@@ -67,17 +72,21 @@ export default new Vuex.Store({
         getCinemas({commit}, page) {
             axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/now_playing?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=${page || 1}`)
                 .then(function (response) {
-                    console.log(response)
                     commit('SET_CINEMAS', response.data)
                 })
         },
 
-        getSimilarMovies({commit}){
-            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/popular?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=4`)
+        getSimilarMovies({commit}, id){
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/${id}/similar?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=1`)
                 .then(function (response) {
                     commit('SET_SIMILAR_MOVIES', response.data)
-
                 })
+        },
+
+        getMovieById({commit}, $id) {
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/${$id}?api_key=${process.env.VUE_APP_API_KEY}&language=en`).then(response => {
+                commit('SET_MOVIE', response.data)
+            })
         }
     },
     getters: {
@@ -90,12 +99,14 @@ export default new Vuex.Store({
         getRecommendations(state) {
             return state.recommendations
         },
-
         getCinema(state) {
             return state.cinemas
         },
-        getSimilarMovies(state){
+        getSimilarMovies(state) {
             return state.similarMovies
+        },
+        getMovie(state) {
+            return state.movie
         }
     }
 })

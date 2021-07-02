@@ -2,50 +2,50 @@
     <div>
         <div  class="row">
             <div class="col-8 col-md-4">
-                <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movies.poster_path}`" class="img-fluid mb-2">
+                <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`" class="img-fluid mb-2">
             </div>
             <div class="col-12 col-md-8">
                 <ul class="list-group">
                     <li class="list-group-item widgetColor">
                         <span>Title: </span>
-                        <strong>{{movies.title}}</strong>
+                        <strong>{{movie.title}}</strong>
                     </li>
                     <li class="list-group-item bg-transparent">
                         <span>Original Name: </span>
-                        <strong>{{movies.original_title}}</strong>
+                        <strong>{{movie.original_title}}</strong>
                     </li>
                     <li class="list-group-item widgetColor">
                         <span>Year: </span>
-                        <strong>{{movies.release_date}}</strong>
+                        <strong>{{movie.release_date}}</strong>
                     </li>
                     <li class="list-group-item bg-transparent">
                         <span>Genre: </span>
-                        <strong>{{movies.genre_ids}}</strong>
+                        <strong v-for="genre in movie.genres">{{genre.name}},   </strong>
                     </li>
                     <li class="list-group-item widgetColor">
                         <span>Duration: </span>
-                        <strong>106min</strong>
+                        <strong>{{movie.runtime}} min</strong>
                     </li>
                     <li class="list-group-item bg-transparent">
-                        <span>Genre: </span>
-                        <strong>United States of America,</strong>
+                        <span>City: </span>
+                        <strong v-for="city in movie.production_countries">{{city.name}}, </strong>
                     </li>
                     <li class="list-group-item widgetColor">
                         <span>Budget: </span>
-                        <strong>0$</strong>
+                        <strong>{{movie.budget}}$</strong>
                     </li>
                 </ul>
             </div>
             <div class="col-12 mt-4">
                 <div class="widgetColor p-3">
                     <h5>About Film</h5>
-                    <p>{{movies.overview}}</p>
+                    <p>{{movie.overview}}</p>
                 </div>
             </div>
             <div class="col-12 col-md-8 mt-2">
                 <vueStar
                         class="justify-content-center"
-                        :increment="movies.vote_average"
+                        :increment="movie.vote_average"
                         :rating="5"
                         :read-only="true"
                         :show-rating="false"
@@ -54,8 +54,8 @@
                 </vueStar>
             </div>
             <div class="col-12 col-md-4 mt-2">
-                <p class="m-0 fs-5 text-end">Movie Rating: <strong>{{movies.vote_average}}</strong></p>
-                <p class="m-0 text-end">Total Votes: <strong>{{movies.vote_count}}</strong></p>
+                <p class="m-0 fs-5 text-end">Movie Rating: <strong>{{movie.vote_average}}</strong></p>
+                <p class="m-0 text-end">Total Votes: <strong>{{movie.vote_count}}</strong></p>
             </div>
             <div class="col-12 mt-2 overflow-hidden">
                 <iframe class="trailer-frame" src="https://www.youtube.com/embed/nAowcCbWhqg"></iframe>
@@ -63,7 +63,7 @@
             <div class="col-12 mt-3">
                 <div class="position-relative top-banner ">
                     <h5 class="text-left pt-3 pl-3 pr-3">Similar Movies</h5>
-                    <movieCarousel />
+                    <movieCarousel :key="movie.id" />
                 </div>
             </div>
         </div>
@@ -75,17 +75,14 @@
     import movieCarousel from './movies-carousel'
     export default {
         name: "movie-player",
+        props: {
+            movie: {
+                required: true
+            }
+        },
         components:{
             vueStar,
             movieCarousel
-        },
-        created() {
-            this.$store.dispatch("getPaginationMovies")
-        },
-        computed: {
-            movies() {
-                return this.$store.getters.getMovies
-            }
         },
     }
 </script>

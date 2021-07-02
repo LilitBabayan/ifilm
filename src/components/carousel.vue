@@ -8,9 +8,9 @@
                   :navigation-next-label="nextLabel"
                   :navigation-prev-label="prevLabel">
             <slide v-for="(movie, key) in carouselMovies" :key="`slide-${key}`" class="p-3">
-                <router-link to="/movie">
-                <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`" class="img-fluid movie-pic mb-2">
-                <p>{{movie.title}}</p>
+                <router-link :to="`/movie/${movie.id}`">
+                    <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`" class="img-fluid movie-pic mb-2">
+                    <p>{{movie.title}}</p>
                 </router-link>
             </slide>
         </carousel>
