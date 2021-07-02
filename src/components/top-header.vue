@@ -2,9 +2,9 @@
     <div class="container p-2 q">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand ms-3" href="#">
+                <router-link to="/" class="navbar-brand ms-3" >
                     <img src="../assets/ifilm.png" width="120" class="d-inline-block align-top" alt="">
-                </a>
+                </router-link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

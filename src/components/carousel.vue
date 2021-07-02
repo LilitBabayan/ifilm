@@ -1,14 +1,16 @@
 <template>
     <div class="mb-5">
-        <carousel class="mainContainer" :perPage="8"
+        <carousel class="mainContainer"
                   :perPageCustom="[[185, 2],[768,3], [1024, 8]]"
                   :paginationEnabled = "false"
                   :navigation-enabled="true"
                   :navigation-next-label="nextLabel"
                   :navigation-prev-label="prevLabel">
             <slide v-for="(movie, key) in carouselMovies" :key="`slide-${key}`" class="p-3">
+                <router-link to="/movie">
                 <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`" class="img-fluid movie-pic mb-2">
                 <p>{{movie.title}}</p>
+                </router-link>
             </slide>
         </carousel>
     </div>
@@ -44,27 +46,13 @@
     .mainContainer{
         position:relative;
         p{
-            font-family: $Web-Font;
             font-size: 13px;
-            color: $textColor;
             text-align: center;
         }
         .movie-pic{
-            animation: imageShadow 2s infinite;
-            animation-direction: alternate-reverse;
-            transition: transform .4s;
+            box-shadow: 0 10px 20px 0 #00000030, 0 6px 6px 0 #0000003b;
         }
-        .movie-pic:hover{
-            transform: scale(1.05);
-        }
-        @keyframes imageShadow {
-            from{
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0);
-            }
-            to{
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 1);
-            }
-        }
+
         .VueCarousel-navigation{
             i{
                 font-size: 50px;

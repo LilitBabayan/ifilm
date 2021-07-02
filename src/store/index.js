@@ -12,6 +12,7 @@ export default new Vuex.Store({
             totalPages: 0,
             movies: []
         },
+        similarMovies: [],
     },
 
     mutations: {
@@ -25,7 +26,10 @@ export default new Vuex.Store({
         SET_RECOMMENDATIONS(state, data) {
             state.recommendations.movies = data.results.slice(0, 10)
             state.recommendations.totalPages = data.total_pages
-        }
+        },
+        SET_SIMILAR_MOVIES(state, data){
+            state.similarMovies = data.results
+        },
     },
     actions: {
         getPaginationMovies({commit}, page) {
@@ -46,6 +50,12 @@ export default new Vuex.Store({
                     console.log(response)
                     commit('SET_RECOMMENDATIONS', response.data)
                 })
+        },
+        getSimilarMovies({commit}){
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/popular?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=4`)
+                .then(function (response) {
+                    commit('SET_SIMILAR_MOVIES', response.data)
+                })
         }
     },
     getters: {
@@ -57,6 +67,9 @@ export default new Vuex.Store({
         },
         getRecommendations(state) {
             return state.recommendations
+        },
+        getSimilarMovies(state){
+            return state.similarMovies
         }
     }
 })

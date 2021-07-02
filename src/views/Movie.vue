@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8">
-                <previewPagination></previewPagination>
+                <moviePlayer />
             </div>
             <div class="col-12 col-md-4">
                 <topMovies />
@@ -12,13 +12,17 @@
 </template>
 
 <script>
-    import previewPagination from '@/components/preview-pagination'
+    import moviePlayer from '@/components/widgets/movie-player'
     import topMovies from '@/components/widgets/top-movies-widget'
     export default {
-        name: 'Home',
-        components: {
-            previewPagination,
+        name: "Movies",
+        components:{
+            moviePlayer,
             topMovies
-        }
+        },
     }
 </script>
+
+<style scoped>
+
+</style>

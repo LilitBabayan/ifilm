@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="d-flex justify-content-between mb-4">
-            <h2>Top movies</h2>
-            <button @click="updateRecommendations">
+        <div class="d-flex justify-content-between mb-4 recommendedMovies">
+            <h4>Top movies</h4>
+            <button @click="updateRecommendations" class="border-0 p-0">
                 <i class="fas fa-redo-alt"></i>
             </button>
         </div>
@@ -36,3 +36,21 @@
         }
     }
 </script>
+<style lang="scss">
+    @import '../../sass/variables';
+
+    .recommendedMovies{
+        h4{
+            color: $main-color;
+            font-family: $Web-Font;
+        }
+        button{
+            background-color: transparent;
+            i{
+                color: $main-color;
+            }
+        }
+    }
+
+
+</style>
