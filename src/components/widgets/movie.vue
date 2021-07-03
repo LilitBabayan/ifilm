@@ -6,17 +6,17 @@
                     <img class="img-fluid" :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`">
                 </div>
                 <div class="w-75 p-2">
-                    <div>
+                    <div class="movieList">
                         <p class="fw-bold m-0 d-inline" style="font-size:14px">{{movie.title}}</p>
                         <ul class="p-0 mb-0">
                             <li class="list-inline">
                                 <small>
-                                    <span class="text-black-50  small">Year: <strong>{{movie.release_date}}</strong></span>
+                                    <span class="small">Year: <strong>{{movie.release_date}}</strong></span>
                                 </small>
                             </li>
                             <li class="list-inline">
                                 <small>
-                                    <span class="text-black-50  small">Total Votes: <strong>{{movie.vote_count}}</strong></span>
+                                    <span class="small">Total Votes: <strong>{{movie.vote_count}}</strong></span>
                                 </small>
                             </li>
                         </ul>
@@ -55,6 +55,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        small{
+            color: #00000080;
         }
     }
 

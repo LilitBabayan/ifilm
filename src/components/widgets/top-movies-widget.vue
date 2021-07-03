@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="d-flex justify-content-between mb-4 recommendedMovies">
-            <h4>Top movies</h4>
+            <h4 class="widgetTitle">Top movies</h4>
             <button @click="updateRecommendations" class="border-0 p-0">
                 <i class="fas fa-redo-alt"></i>
             </button>
@@ -40,10 +40,6 @@
     @import '../../sass/variables';
 
     .recommendedMovies{
-        h4{
-            color: $main-color;
-            font-family: $Web-Font;
-        }
         button{
             background-color: transparent;
             i{

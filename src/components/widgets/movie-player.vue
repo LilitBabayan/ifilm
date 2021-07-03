@@ -44,11 +44,11 @@
             </div>
             <div class="col-12 col-md-8 mt-2">
                 <vueStar
-                        class="justify-content-center"
                         :increment="movie.vote_average"
-                        :rating="5"
+                        :rating="movie.vote_average"
                         :read-only="true"
                         :show-rating="false"
+                        :star-size="45"
                         :active-color ="'#fe7900'"
                         :max-rating="10">
                 </vueStar>
@@ -61,8 +61,8 @@
                 <iframe class="trailer-frame" src="https://www.youtube.com/embed/nAowcCbWhqg"></iframe>
             </div>
             <div class="col-12 mt-3">
-                <div class="position-relative top-banner ">
-                    <h5 class="text-left pt-3 pl-3 pr-3">Similar Movies</h5>
+                <div class="position-relative top-banner widgetColor">
+                    <h5 class="text-left pt-3 px-3">Similar Movies</h5>
                     <movieCarousel :key="movie.id" />
                 </div>
             </div>
@@ -94,6 +94,7 @@
         li{
             padding: 12px 15px;
             font-size: 15px;
+            transition: $dark-m-transition;
         }
     }
     .trailer-frame{

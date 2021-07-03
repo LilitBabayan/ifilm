@@ -44,7 +44,7 @@
         },
         computed: {
             totalPages() {
-                return this.$store.state.totalPages
+                return this.$store.state.moviesPagination.totalPages
             }
         }
     }

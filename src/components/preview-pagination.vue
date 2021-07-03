@@ -7,7 +7,7 @@
                     <div class="movieLayer">
                         <div class="position-relative overflow-hidden">
                             <div class="position-absolute text-white info-box">
-                                <h4>{{movie.title}}</h4>
+                                <p class="movieTitle">{{movie.title}}</p>
                                 <ul>
                                     <li><span class="text-white-50">Year:</span> {{movie.release_date}}</li>
                                     <li><span class="text-white-50">Total Votes:</span> {{movie.vote_count}}</li>
@@ -105,7 +105,7 @@
             opacity: 0;
             z-index: 1;
 
-            h4 {
+            .movieTitle {
                 font-size: 20px;
                 font-weight: normal;
             }

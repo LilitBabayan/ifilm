@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="d-flex justify-content-between mb-4">
-            <h2>To The Cinema</h2>
+            <h4 class="widgetTitle">To The Cinema</h4>
         </div>
         <movie class="mb-4" v-for="(movie, key) in cinemas.movies" :key="`movie-${key}`" :movie="movie"/>
     </div>
@@ -30,3 +30,7 @@
         }
     }
 </script>
+<style lang="scss">
+    @import '../../sass/variables';
+
+</style>
