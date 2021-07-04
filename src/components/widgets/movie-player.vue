@@ -27,7 +27,7 @@
                         <strong>{{movie.runtime}} min</strong>
                     </li>
                     <li class="list-group-item bg-transparent">
-                        <span>City: </span>
+                        <span>Country: </span>
                         <strong v-for="city in movie.production_countries">{{city.name}}, </strong>
                     </li>
                     <li class="list-group-item widgetColor">

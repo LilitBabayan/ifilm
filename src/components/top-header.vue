@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <router-link to="/" class="navbar-brand ms-3" >
-                    <img width="120" class="d-inline-block align-top movieIMG" alt="">
+                    <img src="../assets/ifilm.png" width="120" class="d-inline-block align-top" alt="" id="movieIMG">
                 </router-link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <router-link to="#" class="text-decoration-none nav-link  pt-3"><p class="m-0">Random</p></router-link>
+                        <router-link to="#" class="text-decoration-none nav-link  pt-3"><p class="m-0 text-dark">Random</p></router-link>
                         <div class="form-check form-switch mt-3 pl-0 pl-lg-3 pr-0 pr-lg-3">
                             <input @click="modeToggle" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" >
                             <label class="form-check-label" for="flexSwitchCheckDefault"><p class="m-0">Night mode</p></label>
@@ -42,14 +42,13 @@
         methods: {
             modeToggle() {
                 let body = document.querySelector('body')
-                if(body.classList.contains('dark-mode')) {
-                    body.classList.toggle('dark-mode')
+                if(!body.classList.contains('dark-mode')) {
+                    body.classList.add('dark-mode')
                 }else{
-                    body.classList.toggle('dark-mode')
+                    body.classList.remove('dark-mode')
                 }
             },
         },
-
     }
 
 
@@ -58,9 +57,6 @@
 <style lang="scss" scoped>
     @import "../sass/variables";
 
-    .movieIMG{
-        content: url("../assets/ifilm.png");
-    }
     .q {
         font-size: 1rem;
         font-weight: 400;
@@ -106,10 +102,9 @@
         border-color: #ed7812;
     }
 
-    .dark-mode{
-        .movieIMG{
-            content: url("../assets/ifilm-dark-mode.png");
-        }
+    .form-check-input:focus{
+        box-shadow: none;
     }
+
 </style>
 

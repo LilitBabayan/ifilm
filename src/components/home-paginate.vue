@@ -3,6 +3,7 @@
         <Paginate
                 v-model="page"
                 :page-count="totalPages"
+                :margin-pages="0"
                 :first-last-button="true"
                 :first-button-text = "'«'"
                 :last-button-text = "'»'"
@@ -44,7 +45,7 @@
         },
         computed: {
             totalPages() {
-                return this.$store.state.moviesPagination.totalPages
+                return this.$store.state.homePage.totalPages
             }
         }
     }
