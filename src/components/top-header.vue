@@ -18,8 +18,10 @@
                         </li>
                         <li class="nav-item">
                             <form class="flex-nowrap navbar navbar-light bg-transparent myForm" >
-                                <input class="mr-lg-2 mx-3 shadow-none bg-transparent form-control input" placeholder="Search">
-                                <button class="btn p-1" type="submit">Search</button>
+                                <input class="mr-lg-2 mx-3 shadow-none bg-transparent form-control input" v-model="search" placeholder="Search">
+                                <router-link :to="`/search/keyword=${search}`">
+                                  <button class="btn p-1" type="submit">Search</button>
+                                </router-link>
                             </form>
                         </li>
                     </ul>
@@ -39,6 +41,11 @@
 <script>
     export default {
         name: "top-header",
+        data(){
+         return{
+              search:''
+          }
+       },
         methods: {
             modeToggle() {
                 let body = document.querySelector('body')

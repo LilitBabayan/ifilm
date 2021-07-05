@@ -1,7 +1,8 @@
 export default{
     state:{
         movie: {},
-        similarMovies: []
+        similarMovies: [],
+        searchResults: {}
     },
 
     mutations:{
@@ -13,6 +14,9 @@ export default{
         },
         SET_SIMILAR_MOVIES(state, data){
             state.similarMovies = data.results
+        },
+        SET_MOVIE_BY_SEARCH(state,data){
+            state.searchResults = data
         }
     },
 
@@ -20,6 +24,13 @@ export default{
         getMovieById({commit}, $id) {
             axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/${$id}?api_key=${process.env.VUE_APP_API_KEY}&language=en`).then(response => {
                 commit('SET_MOVIE', response.data);
+            }).catch((error)=>{
+                alert('its an error while trying to retrieve the movieID')
+            })
+        },
+        getMovieBySearch({commit}, $keyword,page) {
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/search/movie/?query=${$keyword}&api_key=${process.env.VUE_APP_API_KEY}&${ page|| 1 }`).then(response => {
+                commit('SET_MOVIE_BY_SEARCH', response.data);
             }).catch((error)=>{
                 alert('its an error while trying to retrieve the movieID')
             })
@@ -40,6 +51,9 @@ export default{
         },
         getSimilarMovies(state) {
             return state.similarMovies
-        }
+        },
+        getSearchResults(state){
+            return state.searchResults
+        },
     }
 }
