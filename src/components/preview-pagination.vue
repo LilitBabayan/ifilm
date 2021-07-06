@@ -1,6 +1,25 @@
 <template>
     <div>
-        <paginations></paginations>
+<!--        <paginations></paginations>-->
+        <Paginate
+                v-model="page"
+                :page-count="totalPages"
+                :margin-pages="0"
+                :first-last-button="true"
+                :first-button-text = "'«'"
+                :last-button-text = "'»'"
+                :prev-text="'‹'"
+                :next-text="'›'"
+                :page-class="'page-item'"
+                :page-link-class="'page-link'"
+                prev-class="page-item"
+                prev-link-class="page-link"
+                next-class="page-item"
+                next-link-class="page-link"
+                :click-handler="changePerPage"
+                ref="paginate1"
+                :container-class="'pagination justify-content-center'">
+        </Paginate>
         <div class="row">
             <div v-for="movie in movies" class="col-6 col-lg-4 ">
                 <router-link :to="`/movie/${movie.id}`">
@@ -38,24 +57,59 @@
                 </router-link>
             </div>
         </div>
-        <paginations></paginations>
+        <Paginate
+                v-model="page"
+                :page-count="totalPages"
+                :margin-pages="0"
+                :first-last-button="true"
+                :first-button-text = "'«'"
+                :last-button-text = "'»'"
+                :prev-text="'‹'"
+                :next-text="'›'"
+                :page-class="'page-item'"
+                :page-link-class="'page-link'"
+                prev-class="page-item"
+                prev-link-class="page-link"
+                next-class="page-item"
+                next-link-class="page-link"
+                :click-handler="changePerPage"
+                ref="paginate2"
+                :container-class="'pagination justify-content-center'">
+        </Paginate>
+<!--        <paginations></paginations>-->
     </div>
 </template>
 
 <script>
     import vueStar from 'vue-star-rating'
-    import paginations from './home-paginate'
+    // import paginations from './home-paginate'
+    import Paginate from 'vuejs-paginate'
 
     export default {
         name: "preview-pagination",
         data() {
             return {
                 starSize: 20,
+                page: 1
             }
         },
         components: {
             vueStar,
-            paginations
+            // paginations,
+            Paginate
+        },
+        watch: { //
+            page(val) {
+                this.paginate(val)
+            }
+        },
+        methods:{ //
+            changePerPage(page){
+                this.$refs.paginate1.selected = this.$refs.paginate2.selected = page - 1;
+            },
+            paginate(page) {
+                this.$store.dispatch("getPaginationMovies", page)
+            }
         },
         created() {
             this.$store.dispatch("getPaginationMovies")
@@ -63,6 +117,9 @@
         computed: {
             movies() {
                 return this.$store.getters.getMovies
+            },
+            totalPages() { //
+                return this.$store.state.homePage.totalPages
             }
         },
     }

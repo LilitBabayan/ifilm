@@ -1,7 +1,7 @@
 export default{
     state:{
         movie: {},
-        similarMovies: []
+        similarMovies: [],
     },
 
     mutations:{
@@ -13,7 +13,7 @@ export default{
         },
         SET_SIMILAR_MOVIES(state, data){
             state.similarMovies = data.results
-        }
+        },
     },
 
     actions:{

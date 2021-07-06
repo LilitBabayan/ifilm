@@ -1,5 +1,4 @@
 <template>
-
     <div class="mb-5">
         <carousel class="mainContainer"
                   :perPageCustom="[[185, 2],[768,3], [1024, 8]]"
@@ -14,7 +13,6 @@
                 </router-link>
             </slide>
         </carousel>
-
     </div>
 </template>
 

@@ -41,30 +41,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    @import "../../sass/variables";
-
-    .movieWidget{
-        font-family: $Web-Font;
-        transition: all .3s ease;
-        .averageCircle{
-            background-color: $main-color;
-            color: $dark-m-tColor;
-            width:35px;
-            height:35px;
-            font-family: $Web-Font;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        small{
-            color: #00000080;
-        }
+    small{
+        color: #00000080;
     }
-
-    .movieWidget:hover{
-        box-shadow: 0 14px 28px #00000040, 0 10px 10px #00000038;
-        transform: scale(1.03);
-    }
-
-
 </style>
