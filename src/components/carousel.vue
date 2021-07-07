@@ -44,8 +44,6 @@
 
 
 <style lang="scss">
-    @import "../sass/_variables.scss";
-
     .mainContainer{
         position:relative;
         p{

@@ -33,7 +33,7 @@ export default{
 
     actions:{
         getCarouselMovies({commit}) {
-            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/popular?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=1`)
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/popular?api_key=${process.env.VUE_APP_API_KEY}&language=${vue.$i18n.locale}&page=1`)
                 .then(function (response) {
                     commit('SET_CAROUSEL_MOVIES', response.data)
                 }).catch((error)=>{
@@ -41,7 +41,7 @@ export default{
             })
         },
         getPaginationMovies({commit}, page) {
-            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/popular?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=${page || 1}`)
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/popular?api_key=${process.env.VUE_APP_API_KEY}&language=${vue.$i18n.locale}&page=${page || 1}`)
                 .then(function (response) {
                     commit('SET_MOVIES', response.data)
                 }).catch((error)=>{
@@ -49,7 +49,7 @@ export default{
             })
         },
         getRecommendations({commit}, page) {
-            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/top_rated?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=${page || 1}`)
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/top_rated?api_key=${process.env.VUE_APP_API_KEY}&language=${vue.$i18n.locale}&page=${page || 1}`)
                 .then(function (response) {
                     commit('SET_RECOMMENDATIONS', response.data)
                 }).catch((error)=>{
@@ -57,7 +57,7 @@ export default{
             })
         },
         getCinemas({commit}, page) {
-            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/now_playing?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=${page || 1}`)
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/now_playing?api_key=${process.env.VUE_APP_API_KEY}&language=${vue.$i18n.locale}&page=${page || 1}`)
                 .then(function (response) {
                     commit('SET_CINEMAS', response.data)
                 }).catch((error)=>{

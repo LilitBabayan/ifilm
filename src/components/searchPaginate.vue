@@ -53,8 +53,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../sass/variables";
-
 /deep/ .pagination {
   .page-item.active {
     .page-link {

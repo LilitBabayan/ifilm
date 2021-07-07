@@ -7,18 +7,9 @@ import searchPage from './modules/search-page'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-
     modules:{
       homePage,
       moviePage,
       searchPage
     },
-
-    state: {},
-
-    mutations: {},
-
-    actions: {},
-
-    getters: {}
 })

@@ -18,14 +18,14 @@ export default{
 
     actions:{
         getMovieById({commit}, $id) {
-            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/${$id}?api_key=${process.env.VUE_APP_API_KEY}&language=en`).then(response => {
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/${$id}?api_key=${process.env.VUE_APP_API_KEY}&language=${vue.$i18n.locale}`).then(response => {
                 commit('SET_MOVIE', response.data);
             }).catch((error)=>{
                 alert('its an error while trying to retrieve the movieID')
             })
         },
         getSimilarMovies({commit}, id){
-            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/${id}/similar?api_key=${process.env.VUE_APP_API_KEY}&language=en&page=1`)
+            axios.get(`${process.env.VUE_APP_API_BASE_URL}/movie/${id}/similar?api_key=${process.env.VUE_APP_API_KEY}&language=${vue.$i18n.locale}&page=1`)
                 .then(function (response) {
                     commit('SET_SIMILAR_MOVIES', response.data)
                 }).catch((error)=>{

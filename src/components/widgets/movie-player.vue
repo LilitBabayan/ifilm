@@ -88,8 +88,6 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../../sass/variables";
-
     ul{
         li{
             padding: 12px 15px;

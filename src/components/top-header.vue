@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-lg-0">
                         <li class="nav-item mt-3">
-                            <select class="border-0 p-0 shadow-none w-auto select" >
+                            <select v-model="$i18n.locale" class="border-0 p-0 shadow-none w-auto select" >
                                 <option value="en">EN</option>
                                 <option value="ru">RU</option>
                             </select>
@@ -20,7 +20,7 @@
                             <form class="flex-nowrap navbar navbar-light bg-transparent myForm" >
                                 <input class="mr-lg-2 mx-3 shadow-none bg-transparent form-control input" v-model="search" placeholder="Search">
                                 <router-link :to="`/search/keyword=${search}`">
-                                  <button class="btn p-1" type="submit">Search</button>
+                                  <button class="btn p-1" type="submit">{{$t('search')}}</button>
                                 </router-link>
                             </form>
                         </li>
@@ -62,8 +62,6 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../sass/variables";
-
     .q {
         font-size: 1rem;
         font-weight: 400;

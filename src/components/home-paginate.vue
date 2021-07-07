@@ -1,7 +1,7 @@
 <template>
     <nav aria-label="Page navigation example">
         <Paginate
-            v-model="page"
+            v-model="pageCount"
             :page-count="totalPages"
             :margin-pages="0"
             :first-last-button="true"
@@ -15,10 +15,9 @@
             prev-link-class="page-link"
             next-class="page-item"
             next-link-class="page-link"
-            :click-handler="changePerPage"
             ref="paginate1"
             :container-class="'pagination justify-content-center'">
-    </Paginate>
+        </Paginate>
     </nav>
 </template>
 
@@ -30,9 +29,9 @@
         components: {
             Paginate
         },
-        data() {
-            return {
-                page: 1
+        props: {
+            page: {
+                required: true
             }
         },
         watch: {
@@ -41,9 +40,6 @@
             }
         },
         methods: {
-            changePerPage(page){
-                this.$refs.paginate1.selected = this.$refs.paginate2.selected = page - 1;
-            },
             paginate(page) {
                 this.$store.dispatch("getPaginationMovies", page)
             }
@@ -51,6 +47,14 @@
         computed: {
             totalPages() {
                 return this.$store.state.homePage.totalPages
+            },
+            pageCount: {
+                get() {
+                    return this.page
+                },
+                set(val) {
+                    this.$root.$emit('change_page', val)
+                }
             }
         }
     }

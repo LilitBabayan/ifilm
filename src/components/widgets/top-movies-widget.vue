@@ -37,8 +37,6 @@
     }
 </script>
 <style lang="scss">
-    @import '../../sass/variables';
-
     .recommendedMovies{
         button{
             background-color: transparent;
